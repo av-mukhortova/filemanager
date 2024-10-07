@@ -1,0 +1,20 @@
+{
+  "name": "filemanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/av-mukhortova/filemanager.git"
+  },
+  "author": "Muhortova A.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/av-mukhortova/filemanager/issues"
+  },
+  "homepage": "https://github.com/av-mukhortova/filemanager#readme"
+}
