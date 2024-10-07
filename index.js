@@ -1,25 +1,7 @@
 import readlinePromises from 'node:readline/promises';
-const getUserName = () => {
-    const args = process.argv.slice(2);
-    const nameArg = args.find(arg => arg.startsWith('username='));
-    if (!nameArg) return null;
-
-    return nameArg.split('=')[1] || null;
-};
-
-const printCurrentDirectory = () => {
-    console.log(`You are currently in ${process.cwd()} \n`);
-};
-
-import { homedir } from 'os';
-const setHomeDirectory = () => {
-    process.chdir(homedir());
-    printCurrentDirectory();
-};
-
-const handleUserCommand = async () => {
-
-};
+import { getUserName } from './utils/userUtils.js';
+import { setHomeDirectory } from './utils/directoryUtils.js';
+import { handleUserInput } from './handlers/userInputHandler.js';
 
 const initFileManagerApp = () => {
     const username = getUserName() || 'Guest';
@@ -36,10 +18,8 @@ const initFileManagerApp = () => {
         rl.close();
     };
 
-    rl.on(`line`, async (cmd) => {
-        console.log(cmd);
-        await handleUserCommand(cmd, closeReadLine);
-        printCurrentDirectory();
+    rl.on(`line`, async (input) => {
+        await handleUserInput(input, closeReadLine);
     });
 
     rl.on(`close`, () => {
