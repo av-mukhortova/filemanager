@@ -7,6 +7,8 @@ export const handleUserInput = async (input, closeReadline) => {
 
     switch(cmdName) {
         case 'up':
+        case 'cd':
+        case 'ls':
             await handleNavCommand(cmdName, args, currentDir);
             break;
         case '.exit':
