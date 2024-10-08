@@ -1,5 +1,6 @@
 import { dirname, normalize } from 'path';
 import { readdir } from 'node:fs/promises';
+import { printError } from './errorHandler.js';
 
 export const handleNavCommand = async (cmd, args, dir) => {
     switch(cmd) {
@@ -10,24 +11,24 @@ export const handleNavCommand = async (cmd, args, dir) => {
             goToFolder(args);
             break;
         case 'ls':
-            printFolderContent(dir);
+            await printFolderContent(dir);
             break;
         default:
-            throw new Error('Invalid input');
+            printError('Invalid input');
     }
 };
 
 const goUp = (currentDir) => {
     const parentDir = dirname(currentDir);
     process.chdir(parentDir);
-}
+};
 
 const goToFolder = (args) => {
     const [folder] = args;
     const destinationPath = normalize(folder);
 
     process.chdir(destinationPath);
-}
+};
 
 const printFolderContent = async (dir) => {
     const files = await readdir(dir, { withFileTypes: true});
@@ -43,4 +44,4 @@ const printFolderContent = async (dir) => {
     }));
 
     console.table(result);
-}
+};
