@@ -17,4 +17,4 @@ export const handleHashCommand = async (args, dir) => {
     } catch {
         printError("Invalid input");
     }
-}
+};
