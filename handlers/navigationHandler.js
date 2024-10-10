@@ -14,7 +14,7 @@ export const handleNavCommand = async (cmd, args, dir) => {
             await printFolderContent(dir);
             break;
         default:
-            printError('Invalid input');
+            printError();
     }
 };
 

@@ -25,7 +25,7 @@ export const handleFilesCommand = async (cmd, args, dir) => {
             await removeFile(dir, args);
             break;
         default:
-            printError('Invalid input');
+            printError();
     }
 };
 
@@ -45,7 +45,7 @@ const addFile = async (dir, args) => {
         const filePath = join(dir, fileName);
         await writeFile(filePath, '', {flag: 'wx'});
     } else {
-        printError('Invalid input');
+        printError();
     }
 };
 
@@ -57,11 +57,10 @@ const renameFile = async (dir, args) => {
     await rename(oldFilePath, newFilePath);
 };
 
-/* надо ли создавать папку, если ее нет */
 const copyFile = async (dir, args) => {
     const [fileNameToCopy, destinationFolder] = args;
     if (!fileNameToCopy || !destinationFolder) {
-        printError('Invalid input');
+        printError();
     }
 
     const filePathToCopy = join(dir, fileNameToCopy);

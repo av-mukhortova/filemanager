@@ -13,7 +13,7 @@ export const handleZipCommand = async (cmd, args, dir) => {
             await decompressFile(args, dir);
             break;
         default:
-            printError("Invalid input");
+            printError();
     }
 };
 

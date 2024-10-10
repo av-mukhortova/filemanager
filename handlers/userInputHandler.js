@@ -39,10 +39,10 @@ export const handleUserInput = async (input, closeReadline) => {
                 closeReadline();
                 break;
             default:
-                printError('Invalid input');
+                printError();
         }
         if (cmdName !== '.exit') printCurrentDirectory();
     } catch {
-        printError('Invalid input');
+        printError();
     }
 };

@@ -20,7 +20,7 @@ export const handleOsCommand = (args) => {
             printArchitecture();
             break;
         default:
-            printError('Invalid input');
+            printError();
     }
 };
 
