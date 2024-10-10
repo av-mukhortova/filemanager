@@ -1,5 +1,6 @@
 import { handleNavCommand } from './navigationHandler.js';
 import { handleFilesCommand } from './filesHandler.js';
+import { handleOsCommand } from './osHandlers.js';
 import { printCurrentDirectory } from '../utils/directoryUtils.js';
 import { printError } from './errorHandler.js';
 
@@ -21,6 +22,9 @@ export const handleUserInput = async (input, closeReadline) => {
             case 'mv':
             case 'rm':
                 await handleFilesCommand(cmdName, args, currentDir);
+                break;
+            case 'os':
+                handleOsCommand(args);
                 break;
             case '.exit':
                 closeReadline();
