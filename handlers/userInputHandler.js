@@ -1,6 +1,7 @@
 import { handleNavCommand } from './navigationHandler.js';
 import { handleFilesCommand } from './filesHandler.js';
 import { handleOsCommand } from './osHandlers.js';
+import { handleHashCommand } from './hashHandler.js';
 import { printCurrentDirectory } from '../utils/directoryUtils.js';
 import { printError } from './errorHandler.js';
 
@@ -25,6 +26,9 @@ export const handleUserInput = async (input, closeReadline) => {
                 break;
             case 'os':
                 handleOsCommand(args);
+                break;
+            case 'hash':
+                await handleHashCommand(args, currentDir);
                 break;
             case '.exit':
                 closeReadline();
