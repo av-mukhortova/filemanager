@@ -43,6 +43,6 @@ export const handleUserInput = async (input, closeReadline) => {
         }
         if (cmdName !== '.exit') printCurrentDirectory();
     } catch {
-        printError();
+        printError('Operation failed');
     }
 };

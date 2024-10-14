@@ -18,25 +18,33 @@ export const handleZipCommand = async (cmd, args, dir) => {
 };
 
 const compressFile = async (args, dir) => {
-    const [fileToCompress, compressedFile] = args;
-    const fileToCompressPath = join(dir, fileToCompress);
-    const compressedFilePath = join(dir, compressedFile);
+    try {
+        const [fileToCompress, compressedFile] = args;
+        const fileToCompressPath = join(dir, fileToCompress);
+        const compressedFilePath = join(dir, compressedFile);
 
-    const gzip = createGzip();
-    const source = createReadStream(fileToCompressPath);
-    const destination = createWriteStream(compressedFilePath);
+        const gzip = createGzip();
+        const source = createReadStream(fileToCompressPath);
+        const destination = createWriteStream(compressedFilePath);
 
-    await pipeline(source, gzip, destination);
+        await pipeline(source, gzip, destination);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const decompressFile = async (args, dir) => {
-    const [fileToDecompress, decompressedFile] = args;
-    const fileToDecompressPath = join(dir, fileToDecompress);
-    const decompressedFilePath = join(dir, decompressedFile);
+    try {
+        const [fileToDecompress, decompressedFile] = args;
+        const fileToDecompressPath = join(dir, fileToDecompress);
+        const decompressedFilePath = join(dir, decompressedFile);
 
-    const gzip = createGunzip();
-    const source = createReadStream(fileToDecompressPath);
-    const destination = createWriteStream(decompressedFilePath);
+        const gzip = createGunzip();
+        const source = createReadStream(fileToDecompressPath);
+        const destination = createWriteStream(decompressedFilePath);
 
-    await pipeline(source, gzip, destination);
+        await pipeline(source, gzip, destination);
+    } catch {
+        printError('Operation failed');
+    }
 };

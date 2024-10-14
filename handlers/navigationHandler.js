@@ -19,29 +19,41 @@ export const handleNavCommand = async (cmd, args, dir) => {
 };
 
 const goUp = (currentDir) => {
-    const parentDir = dirname(currentDir);
-    process.chdir(parentDir);
+    try {
+        const parentDir = dirname(currentDir);
+        process.chdir(parentDir);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const goToFolder = (args) => {
-    const [folder] = args;
-    const destinationPath = normalize(folder);
+    try {
+        const [folder] = args;
+        const destinationPath = normalize(folder);
 
-    process.chdir(destinationPath);
+        process.chdir(destinationPath);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const printFolderContent = async (dir) => {
-    const files = await readdir(dir, { withFileTypes: true});
+    try {
+        const files = await readdir(dir, { withFileTypes: true});
 
-    const sortedFiles = files.sort((a,b) => {
-        if (a.isFile() === b.isFile()) return a.name - b.name;
-        return a.isFile() ? 1 : -1;
-    });
+        const sortedFiles = files.sort((a,b) => {
+            if (a.isFile() === b.isFile()) return a.name - b.name;
+            return a.isFile() ? 1 : -1;
+        });
 
-    const result = sortedFiles.map(file => ({
-        Name: file.name,
-        Type: file.isFile() ? 'file' : 'directory',
-    }));
+        const result = sortedFiles.map(file => ({
+            Name: file.name,
+            Type: file.isFile() ? 'file' : 'directory',
+        }));
 
-    console.table(result);
+        console.table(result);
+    } catch {
+        printError('Operation failed');
+    }
 };

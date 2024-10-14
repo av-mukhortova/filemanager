@@ -15,6 +15,6 @@ export const handleHashCommand = async (args, dir) => {
             console.log(`SHA256 hash of file: ${hash.digest('hex')}` );
         });
     } catch {
-        printError();
+        printError('Operation failed');
     }
 };

@@ -25,22 +25,34 @@ export const handleOsCommand = (args) => {
 };
 
 const printEOL = () => {
-    console.log(`EOL: ${JSON.stringify(EOL)}`);
+    try {
+        console.log(`EOL: ${JSON.stringify(EOL)}`);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const printCPUS = () => {
-    const userMachineCpuData = cpus();
-    const cpusData = userMachineCpuData.map((cpu) => ({
-        model: cpu.model,
-        speed: `${(cpu.speed / 1000).toFixed(2)} GHz`,
-    }));
-    console.log(`CPU number: \n`, userMachineCpuData.length);
-    console.log(`CPU data: \n`, cpusData);
+    try {
+        const userMachineCpuData = cpus();
+        const cpusData = userMachineCpuData.map((cpu) => ({
+            model: cpu.model,
+            speed: `${(cpu.speed / 1000).toFixed(2)} GHz`,
+        }));
+        console.log(`CPU number: \n`, userMachineCpuData.length);
+        console.log(`CPU data: \n`, cpusData);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const printHomeDir = () => {
-    const userHomeDirectory = homedir();
-    console.log(`Home directory: ${userHomeDirectory}`);
+    try {
+        const userHomeDirectory = homedir();
+        console.log(`Home directory: ${userHomeDirectory}`);
+    } catch {
+        printError('Operation failed');
+    }
 };
 
 const printUsername = () => {
@@ -48,11 +60,15 @@ const printUsername = () => {
         const userinfo = userInfo();
         console.log(`Sistem user name: ${userinfo.username}`);
     } catch {
-        printError("Something wrong happened");
+        printError('Operation failed');
     }
 };
 
 const printArchitecture = () => {
-    const cpuArchitecture = arch();
-    console.log(`CPU architecture: ${cpuArchitecture}`);
+    try {
+        const cpuArchitecture = arch();
+        console.log(`CPU architecture: ${cpuArchitecture}`);
+    } catch {
+        printError('Operation failed');
+    }
 };
