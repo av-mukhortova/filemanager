@@ -26,7 +26,7 @@ export const handleOsCommand = (args) => {
 
 const printEOL = () => {
     try {
-        console.log(`EOL: ${JSON.stringify(EOL)}`);
+        console.log(`EOL: ${JSON.stringify(EOL)}\n`);
     } catch {
         printError('Operation failed');
     }
@@ -49,7 +49,7 @@ const printCPUS = () => {
 const printHomeDir = () => {
     try {
         const userHomeDirectory = homedir();
-        console.log(`Home directory: ${userHomeDirectory}`);
+        console.log(`Home directory: ${userHomeDirectory}\n`);
     } catch {
         printError('Operation failed');
     }
@@ -58,7 +58,7 @@ const printHomeDir = () => {
 const printUsername = () => {
     try {
         const userinfo = userInfo();
-        console.log(`Sistem user name: ${userinfo.username}`);
+        console.log(`Sistem user name: ${userinfo.username}\n`);
     } catch {
         printError('Operation failed');
     }
@@ -67,7 +67,7 @@ const printUsername = () => {
 const printArchitecture = () => {
     try {
         const cpuArchitecture = arch();
-        console.log(`CPU architecture: ${cpuArchitecture}`);
+        console.log(`CPU architecture: ${cpuArchitecture}\n`);
     } catch {
         printError('Operation failed');
     }

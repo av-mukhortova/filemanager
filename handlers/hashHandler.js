@@ -12,7 +12,7 @@ export const handleHashCommand = async (args, dir) => {
         const hash = createHash('sha256');
 
         readStream.pipe(hash).on('finish', () => {
-            console.log(`SHA256 hash of file: ${hash.digest('hex')}` );
+            console.log(`SHA256 hash of file: ${hash.digest('hex')}\n` );
         });
     } catch {
         printError('Operation failed');
